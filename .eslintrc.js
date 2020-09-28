@@ -10,13 +10,6 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
+    'prefer-const': 'off',
   },
-};
-module.exports = {
-    root: true,
-    extends: '@react-native-community',
-    parser: '@typescript-eslint/parser',
-    plugins: ['@typescript-eslint'],
 };

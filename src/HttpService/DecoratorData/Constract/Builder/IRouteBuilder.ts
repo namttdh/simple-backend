@@ -1,12 +1,11 @@
-import {IMiddlewareDefinition} from '@Core/BasicDecorator/Constract/IMiddlewareDefinition';
-import HttpMethod from '@Core/Constants/HttpMethod';
+import HttpMethod from '@Core/Constant/HttpMethod';
 import {IParamDefinition} from '@Core/BasicDecorator/Constract/IParamDefinition';
-import {StatusCodes} from '@Core/Constants/StatusCode';
+import {StatusCodes} from '@Core/Constant/StatusCode';
 
 export interface IRouteBuilder {
-  addMiddleware(middleware: IMiddlewareDefinition | IMiddlewareDefinition[]): IRouteBuilder;
+  addMiddleware(middleware: any | Array<any>): IRouteBuilder;
 
-  getMiddleware(): IMiddlewareDefinition[];
+  getMiddleware(): Array<any>;
 
   setMethod(method: HttpMethod): IRouteBuilder;
 

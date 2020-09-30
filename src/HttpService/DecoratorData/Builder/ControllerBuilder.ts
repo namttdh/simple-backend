@@ -1,13 +1,12 @@
-import {IControllerBuilder} from '@Core/BasicDecoratorData/Constract/Builder/IControllerBuilder';
-import {IMiddlewareDefinition} from '@Core/BasicDecorator/Constract/IMiddlewareDefinition';
-import {IRouteBuilder} from '@Core/BasicDecoratorData/Constract/Builder/IRouteBuilder';
+import {IControllerBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IControllerBuilder';
+import {IRouteBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IRouteBuilder';
 
 export class ControllerBuilder implements IControllerBuilder {
   private route: Array<any> = [];
   private middleware?: Array<any>;
   private path?: string;
 
-  addMiddleware(middleware: IMiddlewareDefinition | IMiddlewareDefinition[]): IControllerBuilder {
+  addMiddleware(middleware: any | Array<any>): IControllerBuilder {
     if (!this.middleware) {
       this.middleware = [];
     }
@@ -21,7 +20,7 @@ export class ControllerBuilder implements IControllerBuilder {
     return this;
   }
 
-  getMiddleware(): IMiddlewareDefinition[] {
+  getMiddleware(): Array<any> {
     return this.middleware ?? [];
   }
 

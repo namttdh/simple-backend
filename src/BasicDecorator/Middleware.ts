@@ -10,7 +10,8 @@ export const Middleware = (middleware?: any): any => {
       Reflect.defineMetadata(MIDDLEWARE_DECORATOR_KEY, true, target);
     } else {
       const currentTarget = propertyKey ? target.constructor : target;
-      const listMiddleware = (Reflect.getMetadata(MIDDLEWARE_DECORATOR_KEY, currentTarget) as IMiddlewareDefinition[]) ?? [];
+      const listMiddleware =
+        (Reflect.getMetadata(MIDDLEWARE_DECORATOR_KEY, currentTarget) as IMiddlewareDefinition[]) ?? [];
 
       if (!Array.isArray(middleware)) {
         middleware = [middleware];

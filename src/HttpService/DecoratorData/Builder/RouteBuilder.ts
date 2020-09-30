@@ -1,8 +1,7 @@
-import {IRouteBuilder} from '@Core/BasicDecoratorData/Constract/Builder/IRouteBuilder';
 import {IParamDefinition} from '@Core/BasicDecorator/Constract/IParamDefinition';
-import HttpMethod from '@Core/Constants/HttpMethod';
-import {StatusCodes} from '@Core/Constants/StatusCode';
-import {IMiddlewareDefinition} from '@Core/BasicDecorator/Constract/IMiddlewareDefinition';
+import HttpMethod from '@Core/Constant/HttpMethod';
+import {StatusCodes} from '@Core/Constant/StatusCode';
+import {IRouteBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IRouteBuilder';
 
 export class RouteBuilder implements IRouteBuilder {
   private middleware: Array<any> = [];
@@ -12,7 +11,7 @@ export class RouteBuilder implements IRouteBuilder {
   private functionName?: string;
   private responseCode: typeof StatusCodes | number = StatusCodes.OK;
 
-  addMiddleware(middleware: IMiddlewareDefinition | IMiddlewareDefinition[]): IRouteBuilder {
+  addMiddleware(middleware: any | Array<any>): IRouteBuilder {
     if (Array.isArray(middleware)) {
       this.middleware = [...this.middleware, ...middleware];
     } else {
@@ -22,7 +21,7 @@ export class RouteBuilder implements IRouteBuilder {
     return this;
   }
 
-  getMiddleware(): IMiddlewareDefinition[] {
+  getMiddleware(): Array<any> {
     return this.middleware ?? [];
   }
 

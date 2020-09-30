@@ -1,4 +1,4 @@
-import {ParamsType} from '@Core/Constants/ParamsType';
+import {ParamsType} from '@Core/Constant/ParamsType';
 
 export interface IParamDefinition {
   index: number;

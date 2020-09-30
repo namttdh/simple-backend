@@ -1,6 +1,6 @@
-import HttpMethod from '@Core/Constants/HttpMethod';
+import HttpMethod from '@Core/Constant/HttpMethod';
 import {IRouteDefinition} from '@Core/BasicDecorator/Constract/IRouteDefinition';
-import {StatusCodes} from '@Core/Constants/StatusCode';
+import {StatusCodes} from '@Core/Constant/StatusCode';
 
 export const ROUTES_DECORATOR_KEY = Symbol('list_routes');
 

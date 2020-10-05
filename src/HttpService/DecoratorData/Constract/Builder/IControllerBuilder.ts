@@ -1,4 +1,4 @@
-import {IRouteBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IRouteBuilder';
+import {IRouteBuilder} from './IRouteBuilder';
 
 export interface IControllerBuilder {
   addMiddleware(middleware: any | Array<any>): IControllerBuilder;
@@ -12,4 +12,8 @@ export interface IControllerBuilder {
   setRoute(route: IRouteBuilder | IRouteBuilder[]): IControllerBuilder;
 
   getRoute(): IRouteBuilder[];
+
+  setControllerClass(controller: any): IControllerBuilder;
+
+  getControllerClass(): any;
 }

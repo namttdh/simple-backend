@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import * as assert from 'assert';
-import Body from '@Core/BasicDecorator/Argument/Body';
-import {ARGUMENT_DECORATOR_KEY} from '@Core/BasicDecorator/Argument/argumentHelper';
-import {ParamsType} from '@Core/Constant/ParamsType';
+import {ARGUMENT_DECORATOR_KEY} from '../../../src/BasicDecorator/Argument/argumentHelper';
+import {ParamsType} from '../../../src/Constant/ParamsType';
+import {Body} from '../../../src/BasicDecorator/Argument/Body';
 
 describe('Test body params', () => {
   class TestBodyController {

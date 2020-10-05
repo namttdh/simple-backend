@@ -1,5 +1,5 @@
+import {Singleton} from '../Container/Decorator/Singleton';
 import {IMiddlewareDefinition} from './Constract/IMiddlewareDefinition';
-import {Singleton} from '@Core/Container/Decorator/Singleton';
 
 export const MIDDLEWARE_DECORATOR_KEY = Symbol('middleware_prefix');
 

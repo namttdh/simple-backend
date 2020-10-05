@@ -1,6 +1,6 @@
-import {Middleware} from '@Core/BasicDecorator/Middleware';
-import Controller from '@Core/BasicDecorator/Controller';
-import {MiddlewareResolve} from '@Core/HttpService/DecoratorData/Resolve/MiddlewareResolve';
+import {MiddlewareResolve} from '../../../../../src/HttpService/DecoratorData/Resolve/MiddlewareResolve';
+import {Middleware} from '../../../../../src/BasicDecorator/Middleware';
+import {Controller} from '../../../../../src/BasicDecorator/Controller';
 
 describe('Test middleware resolve', () => {
   @Middleware()

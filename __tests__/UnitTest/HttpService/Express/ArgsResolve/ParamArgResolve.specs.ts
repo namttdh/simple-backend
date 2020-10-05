@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import {Request} from 'express';
-import {ParamArgsResolve} from '@Core/HttpService/Express/ArgsResolve/ParamArgsResolve';
+import {ParamArgsResolve} from '../../../../../src/HttpService/Express/ArgsResolve/ParamArgsResolve';
 
 describe('Test resolve param', () => {
   it("Haven't value", async () => {

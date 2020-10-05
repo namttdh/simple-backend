@@ -1,4 +1,4 @@
-import BaseMiddleware from '@Core/BaseAbstract/BaseMiddleware';
+import BaseMiddleware from '../../BaseAbstract/BaseMiddleware';
 
 export type MiddlewareDecoratorProps = BaseMiddleware | string | ((request: any, response: any, next: any) => void);
 

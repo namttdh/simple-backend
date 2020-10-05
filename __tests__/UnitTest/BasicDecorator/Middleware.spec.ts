@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import {container} from 'tsyringe';
-import {Middleware} from '@Core/BasicDecorator/Middleware';
+import {Middleware} from '../../../src/BasicDecorator/Middleware';
 
 describe('Test middleware', () => {
   @Middleware()

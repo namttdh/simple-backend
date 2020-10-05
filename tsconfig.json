@@ -13,11 +13,8 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",                       /* Base directory to resolve non-absolute module names. */
-    "paths": {
-      "@Core/*": ["*"]
-    }
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "src",

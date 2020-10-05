@@ -1,15 +1,15 @@
-import Controller from '@Core/BasicDecorator/Controller';
-import Route from '@Core/BasicDecorator/Route';
-import {RouteResolve} from '@Core/HttpService/DecoratorData/Resolve/RouteResolve';
-import {ControllerResolve} from '@Core/HttpService/DecoratorData/Resolve/ControllerResolve';
-import Request from '@Core/BasicDecorator/Argument/Request';
-import Response from '@Core/BasicDecorator/Argument/Response';
-import HttpMethod from '@Core/Constant/HttpMethod';
-import {ParamsType} from '@Core/Constant/ParamsType';
-import {MiddlewareResolve} from '@Core/HttpService/DecoratorData/Resolve/MiddlewareResolve';
-import {Middleware} from '@Core/BasicDecorator/Middleware';
-import {Container} from '@Core/Container';
-import {DecoratorData} from '@Core/HttpService/DecoratorData/DecoratorData';
+import {ControllerResolve} from '../../../src/HttpService/DecoratorData/Resolve/ControllerResolve';
+import {RouteResolve} from '../../../src/HttpService/DecoratorData/Resolve/RouteResolve';
+import {DecoratorData} from '../../../src/HttpService/DecoratorData';
+import {MiddlewareResolve} from '../../../src/HttpService/DecoratorData/Resolve/MiddlewareResolve';
+import {Middleware} from '../../../src/BasicDecorator/Middleware';
+import HttpMethod from '../../../src/Constant/HttpMethod';
+import {ParamsType} from '../../../src/Constant/ParamsType';
+import {Container} from '../../../src/Container';
+import {Controller} from '../../../src/BasicDecorator/Controller';
+import {Route} from '../../../src/BasicDecorator/Route';
+import {Request} from '../../../src/BasicDecorator/Argument/Request';
+import {Response} from '../../../src/BasicDecorator/Argument/Response';
 
 describe('Test get data from decorator', () => {
   Container.register('middleware1', {useValue: 'middleware1'});
@@ -34,11 +34,7 @@ describe('Test get data from decorator', () => {
   }
 
   it('Test get full data using decorator', async () => {
-    const basicDecoratorData = new DecoratorData(
-      new ControllerResolve(),
-      new RouteResolve(),
-      new MiddlewareResolve(),
-    );
+    const basicDecoratorData = new DecoratorData(new ControllerResolve(), new RouteResolve(), new MiddlewareResolve());
     let result = basicDecoratorData.addController(TestController).get();
 
     expect(result).toHaveLength(1);

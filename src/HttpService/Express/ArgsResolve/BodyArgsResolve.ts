@@ -1,5 +1,5 @@
 import {Request} from 'express';
-import {IBodyArgsResolve} from '@Core/HttpService/Constract/ArgsResolve/BodyArgsResolve';
+import {IBodyArgsResolve} from '../../Constract/ArgsResolve/BodyArgsResolve';
 
 export class BodyArgsResolve implements IBodyArgsResolve {
   async resolve(request?: Request): Promise<any> {

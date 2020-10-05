@@ -1,6 +1,6 @@
-import HttpMethod from '@Core/Constant/HttpMethod';
-import {IParamDefinition} from '@Core/BasicDecorator/Constract/IParamDefinition';
-import {StatusCodes} from '@Core/Constant/StatusCode';
+import HttpMethod from '../../../../Constant/HttpMethod';
+import {IParamDefinition} from '../../../../BasicDecorator/Constract/IParamDefinition';
+import {StatusCodes} from 'http-status-codes/build/es';
 
 export interface IRouteBuilder {
   addMiddleware(middleware: any | Array<any>): IRouteBuilder;

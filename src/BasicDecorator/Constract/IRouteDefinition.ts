@@ -1,5 +1,5 @@
-import HttpMethod from '@Core/Constant/HttpMethod';
-import {StatusCodes} from '@Core/Constant/StatusCode';
+import {StatusCodes} from '../../Constant/StatusCode';
+import HttpMethod from '../../Constant/HttpMethod';
 
 export interface IRouteDefinition {
   requestMethod: HttpMethod;

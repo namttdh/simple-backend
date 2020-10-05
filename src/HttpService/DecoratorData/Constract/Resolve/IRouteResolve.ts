@@ -1,4 +1,4 @@
-import {IRouteBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IRouteBuilder';
+import {IRouteBuilder} from '../Builder/IRouteBuilder';
 
 export const IRouteResolveName = 'IRouteResolve';
 

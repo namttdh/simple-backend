@@ -1,19 +1,13 @@
-import {IBasicDecoratorData} from '@Core/HttpService/DecoratorData/Constract/IBasicDecoratorData';
-import {Inject} from '@Core/Container/Decorator/Inject';
-import {
-  IControllerResolve,
-  IControllerResolveName,
-} from '@Core/HttpService/DecoratorData/Constract/Resolve/IControllerResolve';
-import {IControllerBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IControllerBuilder';
-import {IRouteResolve, IRouteResolveName} from '@Core/HttpService/DecoratorData/Constract/Resolve/IRouteResolve';
-import {Singleton} from '@Core/Container/Decorator/Singleton';
-import {
-  IMiddlewareResolve,
-  IMiddlewareResolveName,
-} from '@Core/HttpService/DecoratorData/Constract/Resolve/IMiddlewareResolve';
+import {Inject} from '../../Container/Decorator/Inject';
+import {IControllerResolve, IControllerResolveName} from './Constract/Resolve/IControllerResolve';
+import {IRouteResolve, IRouteResolveName} from './Constract/Resolve/IRouteResolve';
+import {IMiddlewareResolve, IMiddlewareResolveName} from './Constract/Resolve/IMiddlewareResolve';
+import {Singleton} from '../../Container/Decorator/Singleton';
+import {IDecoratorData} from './Constract/IDecoratorData';
+import {IControllerBuilder} from './Constract/Builder/IControllerBuilder';
 
 @Singleton()
-export class DecoratorData implements IBasicDecoratorData {
+export class DecoratorData implements IDecoratorData {
   private listController: Array<any> = [];
 
   constructor(
@@ -48,7 +42,7 @@ export class DecoratorData implements IBasicDecoratorData {
     return controllerBuilders;
   }
 
-  addController(controller: any): IBasicDecoratorData {
+  addController(controller: any): IDecoratorData {
     if (Array.isArray(controller)) {
       this.listController = [this.listController, ...controller];
     } else {
@@ -60,7 +54,7 @@ export class DecoratorData implements IBasicDecoratorData {
 
   private checkListControllerEmpty() {
     if (!this.listController || this.listController.length === 0) {
-      console.log('\x1b[31m%s\x1b[0m', "You' not register any controller");
+      console.log('\x1b[31m%s\x1b[0m', 'Controllers not found. Register those by addController');
       process.exit();
     }
   }

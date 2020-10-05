@@ -1,4 +1,4 @@
-import {IControllerBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IControllerBuilder';
+import {IControllerBuilder} from '../Builder/IControllerBuilder';
 
 export const IControllerResolveName = 'IControllerResolveName';
 

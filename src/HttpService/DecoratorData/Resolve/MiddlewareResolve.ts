@@ -1,13 +1,12 @@
-import {
-  IMiddlewareResolve,
-  MiddlewareResolveProps,
-} from '@Core/HttpService/DecoratorData/Constract/Resolve/IMiddlewareResolve';
-import {IMiddlewareDefinition} from '@Core/BasicDecorator/Constract/IMiddlewareDefinition';
-import {MIDDLEWARE_DECORATOR_KEY} from '@Core/BasicDecorator/Middleware';
 import crypto from 'crypto';
-import {getMetadata} from '@Core/Helper';
-import {Container} from '@Core/Container';
+import {Injectable} from '../../../Container/Decorator/Injectable';
+import {IMiddlewareResolve, MiddlewareResolveProps} from '../Constract/Resolve/IMiddlewareResolve';
+import {getMetadata} from '../../../Helper';
+import {MIDDLEWARE_DECORATOR_KEY} from '../../../BasicDecorator/Middleware';
+import {IMiddlewareDefinition} from '../../../BasicDecorator/Constract/IMiddlewareDefinition';
+import {Container} from '../../../Container';
 
+@Injectable()
 export class MiddlewareResolve implements IMiddlewareResolve {
   private readonly instanceMiddleware: Map<string, any> = new Map();
 

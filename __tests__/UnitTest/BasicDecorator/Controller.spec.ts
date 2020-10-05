@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import {container} from 'tsyringe';
-import Controller from '@Core/BasicDecorator/Controller';
+import {Controller} from '../../../src/BasicDecorator/Controller';
 
 describe('Test controller', () => {
   @Controller('test')

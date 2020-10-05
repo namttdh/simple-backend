@@ -1,12 +1,14 @@
-import {IRouteResolve} from '@Core/HttpService/DecoratorData/Constract/Resolve/IRouteResolve';
-import {IRouteBuilder} from '@Core/HttpService/DecoratorData/Constract/Builder/IRouteBuilder';
-import {getMetadata} from '@Core/Helper';
-import {ROUTES_DECORATOR_KEY} from '@Core/BasicDecorator/Route';
-import {IRouteDefinition} from '@Core/BasicDecorator/Constract/IRouteDefinition';
-import {IParamDefinition} from '@Core/BasicDecorator/Constract/IParamDefinition';
-import {RouteBuilder} from '@Core/HttpService/DecoratorData/Builder/RouteBuilder';
-import {ARGUMENT_DECORATOR_KEY} from '@Core/BasicDecorator/Argument/argumentHelper';
+import {Injectable} from '../../../Container/Decorator/Injectable';
+import {IRouteResolve} from '../Constract/Resolve/IRouteResolve';
+import {RouteBuilder} from '../Builder/RouteBuilder';
+import {ARGUMENT_DECORATOR_KEY} from '../../../BasicDecorator/Argument/argumentHelper';
+import {IRouteBuilder} from '../Constract/Builder/IRouteBuilder';
+import {getMetadata} from '../../../Helper';
+import {IRouteDefinition} from '../../../BasicDecorator/Constract/IRouteDefinition';
+import {ROUTES_DECORATOR_KEY} from '../../../BasicDecorator/Route';
+import {IParamDefinition} from '../../../BasicDecorator/Constract/IParamDefinition';
 
+@Injectable()
 export class RouteResolve implements IRouteResolve {
   private middleware: Map<string | symbol, any> = new Map();
 

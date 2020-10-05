@@ -1,4 +1,4 @@
-import {IParamDefinition} from '@Core/BasicDecorator/Constract/IParamDefinition';
+import {IParamDefinition} from '../Constract/IParamDefinition';
 
 export const ARGUMENT_DECORATOR_KEY = Symbol('list_params');
 

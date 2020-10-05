@@ -1,4 +1,4 @@
-import {IArgumentResolve} from '@Core/HttpService/Constract/IArgumentResolve';
+import {IArgumentResolve} from '../IArgumentResolve';
 
 export const IBodyArgsResolveName = 'IBodyArgsResolve';
 

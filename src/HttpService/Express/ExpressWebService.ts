@@ -3,13 +3,13 @@ import {IDecoratorData, IDecoratorDataName} from '../DecoratorData/Constract/IDe
 import {IControllerBuilder} from '../DecoratorData/Constract/Builder/IControllerBuilder';
 import express, {Application, NextFunction, Request, Response} from 'express';
 import {paramsResolveWorker} from './customParamsResolve';
-import {IWebService} from '../Constract/IWebService';
 import {IRouteBuilder} from '../DecoratorData/Constract/Builder/IRouteBuilder';
 import {StatusCodes} from '../../Constant/StatusCode';
 import {IParamDefinition} from '../../BasicDecorator/Constract/IParamDefinition';
 import {ParamsType} from '../../Constant/ParamsType';
 import {Container} from '../../Container';
 import {Singleton} from '../../Container/Decorator/Singleton';
+import {IWebService} from '../Constract/IWebService';
 
 @Singleton()
 export class ExpressWebService implements IWebService {
@@ -21,12 +21,8 @@ export class ExpressWebService implements IWebService {
     this.paramRegister = paramsResolveWorker();
   }
 
-  instance(): any {
+  instance(): Application {
     return this.expressApplication;
-  }
-
-  express() {
-    return express;
   }
 
   run(): void {
@@ -69,7 +65,11 @@ export class ExpressWebService implements IWebService {
     });
   }
 
-  async resolveRouteParams(paramDefinition: IParamDefinition, request: Request, response: Response) {
+  private async resolveRouteParams(
+    paramDefinition: IParamDefinition,
+    request: Request,
+    response: Response,
+  ): Promise<any> {
     switch (paramDefinition.type) {
       case ParamsType.REQUEST:
         return request;

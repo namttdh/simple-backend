@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import express from 'express';
 
 //constant
 export * from './Constant/HttpMethod';
@@ -32,3 +33,4 @@ export * from './HttpService/DecoratorData/Constract/Resolve/IRouteResolve';
 export * from './HttpService/DecoratorData/Constract/Resolve/IControllerResolve';
 export * from './HttpService/Constract/IWebService';
 export * from './HttpService/Express/ExpressProvider';
+export const Express = express;

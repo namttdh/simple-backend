@@ -1,6 +1,6 @@
 import {IControllerBuilder} from './Builder/IControllerBuilder';
 
-export const IDecoratorDataName = 'IBasicDecoratorData';
+export const IDecoratorDataName = 'IDecoratorDataName';
 
 export interface IDecoratorData {
   get(): IControllerBuilder[];

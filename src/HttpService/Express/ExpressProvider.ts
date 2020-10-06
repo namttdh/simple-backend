@@ -12,10 +12,10 @@ import {ExpressWebService} from './ExpressWebService';
 
 export class ExpressProvider {
   constructor() {
-    Container.register(IControllerResolveName, {useClass: ControllerResolve});
-    Container.register(IRouteResolveName, {useClass: RouteResolve});
-    Container.register(IMiddlewareResolveName, {useClass: MiddlewareResolve});
-    Container.register(IDecoratorDataName, {useClass: DecoratorData});
-    Container.register(IWebServiceName, {useClass: ExpressWebService});
+    Container.registerSingleton(IControllerResolveName, ControllerResolve);
+    Container.registerSingleton(IRouteResolveName, RouteResolve);
+    Container.registerSingleton(IMiddlewareResolveName, MiddlewareResolve);
+    Container.registerSingleton(IDecoratorDataName, DecoratorData);
+    Container.registerSingleton(IWebServiceName, ExpressWebService);
   }
 }

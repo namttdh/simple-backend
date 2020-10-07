@@ -1,5 +1,5 @@
 {
-  "name": "simple-backend",
+  "name": "@lerni/simple-backend",
   "version": "1.0.0",
   "description": "",
   "main": "dist/export.js",
@@ -8,7 +8,9 @@
     "debug": "ts-node-dev --respawn --debug --transpile-only --no-notify src/index.ts",
     "prepare": "npm run build",
     "build": "tsc",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --quiet --fix"
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --quiet --fix",
+    "prepare": "npm run build",
+    "version": "git add -A src"
   },
   "keywords": [],
   "author": "",

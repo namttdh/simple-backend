@@ -1,6 +1,6 @@
 {
   "name": "@lerni/simple-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/export.js",
   "types": "dist/export.d.ts",
@@ -9,8 +9,8 @@
     "prepare": "npm run build",
     "build": "tsc",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --quiet --fix",
-    "prepare": "npm run build",
-    "version": "git add -A src"
+    "version": "git add -A src",
+    "publish": "npm publish --registry https://npm-private-registry.herokuapp.com"
   },
   "keywords": [],
   "author": "",

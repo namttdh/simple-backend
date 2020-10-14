@@ -31,11 +31,6 @@ export class ExpressWebService implements IWebService {
     controllerBuilder.forEach((controller) => {
       this.buildController(controller, controller.getRoute());
     });
-
-    //start service
-    this.instance().listen(process.env.APPLICATION_PORT ?? 3000, () => {
-      console.log('\x1b[32m%s\x1b[0m', 'Application running');
-    });
   }
 
   buildController(controller: IControllerBuilder, routes: IRouteBuilder[]): void {
@@ -44,7 +39,7 @@ export class ExpressWebService implements IWebService {
       let paramsSort = route.getParams();
       this.instance()[route.getMethod()](
         controller.getPath() + route.getPath(),
-        route.getMiddleware(),
+        [...controller.getMiddleware(), ...route.getMiddleware()],
         async (request: Request, response: Response, next: NextFunction) => {
           let params = [];
           for (const param of paramsSort) {

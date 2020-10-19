@@ -38,12 +38,12 @@ export class MiddlewareResolve implements IMiddlewareResolve {
         //if middleware is from ioc or set class directly
         let middlewareInstance: any = Container.resolve(middlewareDefinition.middleware as any);
 
-        if (typeof middlewareDefinition.middleware === 'string') {
+        if (!middlewareInstance['_apply']) {
           //case middleware is alias string
           this.instanceMiddleware.set(middlewareKey, middlewareInstance);
         } else {
           //case middleware is class with decorate @Middleware
-          this.instanceMiddleware.set(middlewareKey, middlewareInstance['apply']);
+          this.instanceMiddleware.set(middlewareKey, middlewareInstance['_apply']);
         }
       } else {
         //case is function

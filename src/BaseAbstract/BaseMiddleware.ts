@@ -1,5 +1,3 @@
-abstract class BaseMiddleware {
-  abstract apply(request: any, response: any, next: any): void;
+export default abstract class BaseMiddleware {
+  abstract _apply(request: any, response: any, next: any): void;
 }
-
-export default BaseMiddleware;

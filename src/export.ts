@@ -4,6 +4,7 @@ import express from 'express';
 //constant
 export * from './Constant/HttpMethod';
 export * from './Constant/StatusCode';
+export * from './BaseAbstract/BaseMiddleware';
 
 //container
 export * from './Container';

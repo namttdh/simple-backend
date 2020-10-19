@@ -43,7 +43,7 @@ export class MiddlewareResolve implements IMiddlewareResolve {
           this.instanceMiddleware.set(middlewareKey, middlewareInstance);
         } else {
           //case middleware is class with decorate @Middleware
-          this.instanceMiddleware.set(middlewareKey, middlewareInstance['_apply']);
+          this.instanceMiddleware.set(middlewareKey, middlewareInstance['_apply'].bind(middlewareInstance));
         }
       } else {
         //case is function

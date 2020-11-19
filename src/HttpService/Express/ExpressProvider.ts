@@ -9,6 +9,8 @@ import {IDecoratorDataName} from '../DecoratorData/Constract/IDecoratorData';
 import {DecoratorData} from '../DecoratorData';
 import {IWebServiceName} from '../Constract/IWebService';
 import {ExpressWebService} from './ExpressWebService';
+import {IParamResolveWorkerName} from '../Constract/IParamResolveWorker';
+import {paramsResolveWorker} from './customParamsResolve';
 
 export class ExpressProvider {
   constructor() {
@@ -17,5 +19,8 @@ export class ExpressProvider {
     Container.registerSingleton(IMiddlewareResolveName, MiddlewareResolve);
     Container.registerSingleton(IDecoratorDataName, DecoratorData);
     Container.registerSingleton(IWebServiceName, ExpressWebService);
+    Container.register(IParamResolveWorkerName, {
+      useValue: paramsResolveWorker(),
+    });
   }
 }

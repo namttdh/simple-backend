@@ -1,12 +1,13 @@
 import {MiddlewareResolve} from '../../../../../src/HttpService/DecoratorData/Resolve/MiddlewareResolve';
 import {Middleware} from '../../../../../src/BasicDecorator/Middleware';
 import {Controller} from '../../../../../src/BasicDecorator/Controller';
+import BaseMiddleware from '../../../../../src/BaseAbstract/BaseMiddleware';
 
 describe('Test middleware resolve', () => {
   @Middleware()
-  class TestMiddleware {
+  class TestMiddleware extends BaseMiddleware {
     private test = 0;
-    apply() {
+    _apply() {
       if (this.test === 0) {
         this.test = Math.floor(Math.random() * Math.floor(9999));
       }

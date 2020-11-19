@@ -2,7 +2,6 @@ import {Inject} from '../../Container/Decorator/Inject';
 import {IDecoratorData, IDecoratorDataName} from '../DecoratorData/Constract/IDecoratorData';
 import {IControllerBuilder} from '../DecoratorData/Constract/Builder/IControllerBuilder';
 import express, {Application, NextFunction, Request, Response} from 'express';
-import {paramsResolveWorker} from './customParamsResolve';
 import {IRouteBuilder} from '../DecoratorData/Constract/Builder/IRouteBuilder';
 import {StatusCodes} from '../../Constant/StatusCode';
 import {IParamDefinition} from '../../BasicDecorator/Constract/IParamDefinition';
@@ -10,15 +9,17 @@ import {ParamsType} from '../../Constant/ParamsType';
 import {Container} from '../../Container';
 import {Singleton} from '../../Container/Decorator/Singleton';
 import {IWebService} from '../Constract/IWebService';
+import {IParamResolveWorkerName} from '../Constract/IParamResolveWorker';
 
 @Singleton()
 export class ExpressWebService implements IWebService {
   private readonly expressApplication: Application;
-  private paramRegister: Map<ParamsType, any>;
 
-  constructor(@Inject(IDecoratorDataName) private decoratorData: IDecoratorData) {
+  constructor(
+    @Inject(IDecoratorDataName) private decoratorData: IDecoratorData,
+    @Inject(IParamResolveWorkerName) private paramRegister: Map<ParamsType, any>,
+  ) {
     this.expressApplication = express();
-    this.paramRegister = paramsResolveWorker();
   }
 
   instance(): Application {

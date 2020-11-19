@@ -1,35 +1,44 @@
 import request from 'supertest';
-import {IControllerResolveName} from '../../../src/HttpService/DecoratorData/Constract/Resolve/IControllerResolve';
-import {IMiddlewareResolveName} from '../../../src/HttpService/DecoratorData/Constract/Resolve/IMiddlewareResolve';
-import {ControllerResolve} from '../../../src/HttpService/DecoratorData/Resolve/ControllerResolve';
-import {RouteResolve} from '../../../src/HttpService/DecoratorData/Resolve/RouteResolve';
-import {DecoratorData} from '../../../src/HttpService/DecoratorData';
-import {IRouteResolveName} from '../../../src/HttpService/DecoratorData/Constract/Resolve/IRouteResolve';
-import {MiddlewareResolve} from '../../../src/HttpService/DecoratorData/Resolve/MiddlewareResolve';
 import {ExpressWebService} from '../../../src/HttpService/Express';
 import {Container} from '../../../src/Container';
 import {Controller} from '../../../src/BasicDecorator/Controller';
 import {Route} from '../../../src/BasicDecorator/Route';
+import {ExpressProvider} from '../../../src/HttpService/Express/ExpressProvider';
+import {IDecoratorData, IDecoratorDataName} from '../../../src/HttpService/DecoratorData/Constract/IDecoratorData';
+import {Param} from '../../../src/BasicDecorator/Argument/Param';
 
 describe('Express server test', () => {
-  Container.register(IControllerResolveName, {useClass: ControllerResolve});
-  Container.register(IRouteResolveName, {useClass: RouteResolve});
-  Container.register(IMiddlewareResolveName, {useClass: MiddlewareResolve});
+  Container.resolve(ExpressProvider);
   @Controller('test')
   class TestController {
-    @Route({path: 'test'})
+    @Route({path: '1'})
     async test() {
       return 'hello world';
+    }
+
+    @Route({path: '2/:id'})
+    async test2(@Param('id') id: string) {
+      return id;
     }
   }
 
   it('Test start service express success', async () => {
-    let decoratorData = Container.resolve(DecoratorData);
+    let decoratorData: IDecoratorData = Container.resolve(IDecoratorDataName);
     decoratorData.addController(TestController);
 
-    let expressWebService = new ExpressWebService(decoratorData);
+    let expressWebService = Container.resolve(ExpressWebService);
     expressWebService.run();
-    let result = await request(expressWebService.instance()).get('/test/test');
+    let result = await request(expressWebService.instance()).get('/test/1');
     expect(result.text).toBe('hello world');
+  });
+
+  it('Test with param', async () => {
+    let decoratorData: IDecoratorData = Container.resolve(IDecoratorDataName);
+    decoratorData.addController(TestController);
+
+    let expressWebService = Container.resolve(ExpressWebService);
+    expressWebService.run();
+    let result = await request(expressWebService.instance()).get('/test/2/test-param');
+    expect(result.text).toBe('test-param');
   });
 });

@@ -30,6 +30,7 @@ export class MiddlewareResolve implements IMiddlewareResolve {
 
   private resolveSingleton(middlewareDefinition: IMiddlewareDefinition) {
     let middlewareKey = crypto.createHash('md5').update(middlewareDefinition.middleware.toString()).digest('hex');
+    let middlewareFunction = null;
     if (!this.instanceMiddleware.get(middlewareKey)) {
       if (
         typeof middlewareDefinition.middleware === 'string' ||
@@ -40,14 +41,23 @@ export class MiddlewareResolve implements IMiddlewareResolve {
 
         if (!middlewareInstance['_apply']) {
           //case middleware is alias string
-          this.instanceMiddleware.set(middlewareKey, middlewareInstance);
+          middlewareFunction = middlewareInstance;
         } else {
           //case middleware is class with decorate @Middleware
-          this.instanceMiddleware.set(middlewareKey, middlewareInstance['_apply'].bind(middlewareInstance));
+          middlewareFunction = middlewareInstance['_apply'].bind(middlewareInstance);
         }
       } else {
         //case is function
-        this.instanceMiddleware.set(middlewareKey, middlewareDefinition.middleware);
+        middlewareFunction = middlewareDefinition.middleware;
+      }
+    }
+
+    if (middlewareFunction) {
+      //check option singleton if set, then using as singleton
+      if (middlewareDefinition.options?.singleton) {
+        this.instanceMiddleware.set(middlewareKey, middlewareFunction);
+      } else {
+        return middlewareFunction;
       }
     }
 

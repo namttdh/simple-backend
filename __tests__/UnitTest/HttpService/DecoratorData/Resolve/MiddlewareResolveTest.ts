@@ -24,6 +24,39 @@ describe('Test middleware resolve', () => {
       //
     }
   }
+
+  @Controller()
+  @Middleware(() => {
+    //
+  })
+  class TestBody2Controller {
+    @Middleware(() => {
+      //
+    })
+    hello() {
+      //
+    }
+  }
+
+  @Controller()
+  @Middleware(
+    () => {
+      //
+    },
+    {singleton: false},
+  )
+  class TestBody3Controller {
+    @Middleware(
+      () => {
+        //
+      },
+      {singleton: false},
+    )
+    hello() {
+      //
+    }
+  }
+
   it('Test middleware singleton', function () {
     let middlewareResolve = new MiddlewareResolve();
     let middlewareResolveProps = middlewareResolve.resolve(TestBodyController);
@@ -31,5 +64,23 @@ describe('Test middleware resolve', () => {
     let rs2 = middlewareResolveProps.getController()[0]();
 
     expect(rs1).toBe(rs2);
+  });
+
+  it('Test middleware singleton function', function () {
+    let middlewareResolve = new MiddlewareResolve();
+    let middlewareResolveProps = middlewareResolve.resolve(TestBody2Controller);
+    let rs1 = middlewareResolveProps.getRoute().get('hello')[0];
+    let rs2 = middlewareResolveProps.getController()[0];
+
+    expect(rs1).toBe(rs2);
+  });
+
+  it('Test middleware not singleton function', function () {
+    let middlewareResolve = new MiddlewareResolve();
+    let middlewareResolveProps = middlewareResolve.resolve(TestBody3Controller);
+    let rs1 = middlewareResolveProps.getRoute().get('hello')[0];
+    let rs2 = middlewareResolveProps.getController()[0];
+
+    expect(rs1).not.toBe(rs2);
   });
 });

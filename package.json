@@ -1,16 +1,17 @@
 {
   "name": "@lerni/simple-backend",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "dist/export.js",
   "types": "dist/export.d.ts",
   "scripts": {
+    "prepare": "npm run co:login",
+    "co:login": "aws codeartifact login --tool npm --repository lerni --domain lerni --region ap-southeast-1",
     "debug": "ts-node-dev --respawn --debug --transpile-only --no-notify src/index.ts",
     "install": "npm run build",
     "build": "tsc",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --quiet --fix",
-    "version": "git add -A src",
-    "publish": "npm publish --registry https://npm-private-registry.herokuapp.com"
+    "version": "git add -A src"
   },
   "keywords": [],
   "author": "",

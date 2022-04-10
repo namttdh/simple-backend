@@ -1,9 +1,9 @@
 import {Singleton} from '../Container/Decorator/Singleton';
-import {IMiddlewareDefinition} from './Constract/IMiddlewareDefinition';
+import {IMiddlewareDefinition, IMiddlewareOptions} from './Constract/IMiddlewareDefinition';
 
 export const MIDDLEWARE_DECORATOR_KEY = Symbol('middleware_prefix');
 
-export const Middleware = (middleware?: any): any => {
+export const Middleware = (middleware?: any, options?: IMiddlewareOptions): any => {
   return (target: any, propertyKey: string) => {
     if (!middleware) {
       Singleton()(target);
@@ -21,6 +21,7 @@ export const Middleware = (middleware?: any): any => {
         listMiddleware.unshift({
           middleware: middle,
           methodName: propertyKey ?? undefined,
+          options: {singleton: true, ...options},
         });
       });
 
